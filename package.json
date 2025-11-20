@@ -1,0 +1,22 @@
+{
+  "name": "week1-level3",
+  "version": "1.0.0",
+  "description": "Week1 Nodejs Assignment",
+  "homepage": "https://github.com/maddiepdl/week1-level3#readme",
+  "bugs": {
+    "url": "https://github.com/maddiepdl/week1-level3/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maddiepdl/week1-level3.git"
+  },
+  "license": "MIT",
+  "author": "maddiepdl",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check:node": "node scripts/checkEnv.js hello-from-npm-script",
+    "dev": "live-server --port=3000"
+  }
+}
