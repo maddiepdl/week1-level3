@@ -1,38 +1,42 @@
-const baseUrl = 'https://pokeapi.co/api/v2';
+function renderPokemonResponse(apiResponse, contentElement) {
+  if (apiResponse.success) {
+    // Display the pokemon name
+    const pokemon = apiResponse.data;
 
-// Base function for API requests
-// A UTIL function
-async function makeAPIRequest(endpoint) {
-  try {
-    const response = await axios.get(endpoint);
-    const data = await response.data;
+    const typesArray = pokemon.types;
+    // let typesString = '';
 
-    return {
-      success: true,
-      data: data
-    };
-  } catch (error) {
-    return {
-      success: false,
-      error: error
-    };
+    // typesArray.forEach((type, index) => {
+    //   typesString += type.type.name;
+
+    //   if (index < typesArray.length - 1) {
+    //     typesString += ', ';
+    //   }
+    // });
+
+    const typesString = typesArray.map(type => type.type.name).join(", ");
+
+    contentElement.innerHTML = `
+      <div class="card" style="width: 18rem;">
+        <img src="${pokemon.sprites.front_default}" class="card-img-top" alt="Sprite image of ${pokemon.name}">
+        <div class="card-body">
+          <h5 class="card-title">Name: ${pokemon.name} - ID: ${pokemon.id}</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Pokemon Weight: ${pokemon.weight}</li>
+            <li class="list-group-item">Pokemon Height: ${pokemon.height}</li>
+            <li class="list-group-item">Pokemon Types: ${typesString}</li>
+          </ul>
+        </div>
+      </div>
+    `;
+  } else {
+    // Display the error message
+    const { error } = apiResponse;
+
+    contentElement.innerHTML = `
+      <h2 class="text-danger">The API failed because: ${error.message}</h2>
+    `;
   }
 }
 
-// Specific functions using the base function
-async function getPokemonAPI(pokemonName) {
-  const endpoint = `${baseUrl}/pokemon/${pokemonName}`;
-  return makeAPIRequest(endpoint);
-}
-
-async function getAbilitiesAPI() {
-  const endpoint = `${baseUrl}/ability`;
-  return makeAPIRequest(endpoint);
-}
-
-async function getItemAPI(itemId) {
-  const endpoint = `${baseUrl}/item/${itemId}`;
-  return makeAPIRequest(endpoint);
-}
-
-export { getPokemonAPI, getAbilitiesAPI, getItemAPI };
+export default renderPokemonResponse;

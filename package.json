@@ -25,6 +25,10 @@
     "lodash": "4.17.21"
   },
   "devDependencies": {
-    "live-server": "^1.2.0"
+    "eslint": "^9.39.1",
+    "htmlhint": "^1.7.1",
+    "live-server": "^1.2.0",
+    "stylelint": "^16.26.0",
+    "stylelint-config-standard": "^39.0.1"
   }
 }
