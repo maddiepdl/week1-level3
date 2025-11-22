@@ -33,14 +33,14 @@ module.exports = [
         setInterval: "readonly",
         clearTimeout: "readonly",
         clearInterval: "readonly",
-
+        
         // Node.js globals (for scripts)
         process: "readonly",
         Buffer: "readonly",
         global: "readonly",
         __dirname: "readonly",
         __filename: "readonly",
-
+        
         // Common library globals
         axios: "readonly",
         _: "readonly" // Lodash
